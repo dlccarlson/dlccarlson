@@ -1,0 +1,251 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #2c3e50;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.subject-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.subject-select {
+    flex: 1;
+}
+
+.subject-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.date-selectors {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.date-select {
+    flex: 1;
+}
+
+.remember-month {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.remember-month input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.remember-month label {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+select, input[type="text"], button {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+input[type="checkbox"] {
+    width: auto;
+}
+
+#add-subject, #remove-subject {
+    width: auto;
+    white-space: nowrap;
+}
+
+#remove-subject {
+    background-color: #e74c3c;
+}
+
+#remove-subject:hover {
+    background-color: #c0392b;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+#number-pad {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.num-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 5px;
+}
+
+.num-btn {
+    padding: 8px;
+    font-size: 14px;
+}
+
+.num-btn#day-btn {
+    font-size: 12px;
+    background-color: #eef030;
+    color: black;
+}
+
+.num-btn#night-btn {
+    font-size: 12px;
+    background-color: black;
+    color: white;
+}
+
+.num-btn#day-btn:hover {
+    background-color: #d9dc2c;
+}
+
+.num-btn#night-btn:hover {
+    background-color: #333;
+}
+
+input[type="text"]#date {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    text-align: center;
+}
+
+#undo-btn {
+    background-color: #e74c3c;
+}
+
+#undo-btn:hover {
+    background-color: #c0392b;
+}
+
+.csv-options {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+#create-csv {
+    background-color: #2ecc71;
+    font-size: 16px;
+    padding: 8px 15px;
+    flex-shrink: 0;
+}
+
+#create-csv:hover {
+    background-color: #27ae60;
+}
+
+.reminder-option {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#send-reminders {
+    margin: 0;
+}
+
+#event-list {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+#events {
+    list-style-type: none;
+}
+
+#events li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #7f8c8d;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    #number-pad {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
