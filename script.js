@@ -29,25 +29,25 @@ document.addEventListener('DOMContentLoaded', () => {
     monthSelect.addEventListener('change', handleMonthChange);
 
     function populateSubjects() {
-        const subjects = JSON.parse(localStorage.getItem('subjects')) || ['Meeting', 'Appointment', 'Task'];
-        subjectSelect.innerHTML = '<option value="">Select a subject</option>';
-        subjects.forEach(subject => {
+        const caregivers = JSON.parse(localStorage.getItem('caregivers')) || ['Beth', 'Tara', 'Patricia', 'Stacey'];
+        subjectSelect.innerHTML = '<option value="">Select a caregiver</option>';
+        caregivers.forEach(caregiver => {
             const option = document.createElement('option');
-            option.value = option.textContent = subject;
+            option.value = option.textContent = caregiver;
             subjectSelect.appendChild(option);
         });
     }
 
     function removeSubject() {
-        const selectedSubject = subjectSelect.value;
-        if (selectedSubject) {
-            const subjects = JSON.parse(localStorage.getItem('subjects')) || [];
-            const updatedSubjects = subjects.filter(subject => subject !== selectedSubject);
-            localStorage.setItem('subjects', JSON.stringify(updatedSubjects));
+        const selectedCaregiver = subjectSelect.value;
+        if (selectedCaregiver) {
+            const caregivers = JSON.parse(localStorage.getItem('caregivers')) || [];
+            const updatedCaregivers = caregivers.filter(caregiver => caregiver !== selectedCaregiver);
+            localStorage.setItem('caregivers', JSON.stringify(updatedCaregivers));
             populateSubjects();
-            alert(`Subject "${selectedSubject}" has been removed.`);
+            alert(`Caregiver "${selectedCaregiver}" has been removed.`);
         } else {
-            alert('Please select a subject to remove.');
+            alert('Please select a caregiver to remove.');
         }
     }
 
@@ -138,12 +138,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateEventList() {
-        eventList.innerHTML = '';
+        eventList.innerHTML = '<h2>Added Events (Month/Day/Year)</h2>';
         addedEvents.forEach((event, index) => {
             const li = document.createElement('li');
+            const startDate = new Date(event.startDateTime);
+            const shiftType = getShiftType(startDate);
             li.innerHTML = `
-                ${event.subject}: ${formatDateTime(event.startDateTime)} - ${formatDateTime(event.endDateTime)}
-                <button type="button" class="delete-btn" data-index="${index}">Delete</button>
+                <div class="event-info">${event.subject} ${formatDate(startDate)} ${shiftType}</div>
+                <div class="delete-btn-container">
+                    <button type="button" class="delete-btn" data-index="${index}">🗑️</button>
+                </div>
             `;
             eventList.appendChild(li);
         });
@@ -184,16 +188,21 @@ document.addEventListener('DOMContentLoaded', () => {
         dateInput.value = '';
     }
 
-    function formatDateTime(dateTimeString) {
-        const date = new Date(dateTimeString);
-        return date.toLocaleString('en-US', {
-            year: 'numeric',
+    function formatDate(date) {
+        return date.toLocaleDateString('en-US', {
             month: '2-digit',
             day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: true
+            year: 'numeric'
         });
+    }
+
+    function getShiftType(date) {
+        const hours = date.getHours();
+        if (hours >= 7 && hours < 19) {
+            return 'day';
+        } else {
+            return 'night';
+        }
     }
 
     function createCSV() {
@@ -227,5 +236,8 @@ document.addEventListener('DOMContentLoaded', () => {
             link.click();
             document.body.removeChild(link);
         }
+
+        // Open Google Calendar export page in a new tab
+        window.open('https://calendar.google.com/calendar/u/0/r/settings/export', '_blank');
     }
 });
