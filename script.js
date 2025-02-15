@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dateInput = document.getElementById('date');
     const eventList = document.getElementById('events');
     const rememberMonthCheckbox = document.getElementById('remember-month');
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
     const addedEvents = [];
 
     // Populate dropdowns
@@ -27,6 +28,26 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('create-csv').addEventListener('click', createCSV);
     rememberMonthCheckbox.addEventListener('change', handleRememberMonth);
     monthSelect.addEventListener('change', handleMonthChange);
+    themeToggleBtn.addEventListener('click', toggleTheme);
+
+    // Initialize theme
+    initTheme();
+
+    function initTheme() {
+        const darkMode = localStorage.getItem('darkMode');
+        if (darkMode === 'enabled') {
+            document.body.classList.add('dark-mode');
+        }
+    }
+
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            localStorage.setItem('darkMode', null);
+        }
+    }
 
     function populateSubjects() {
         const caregivers = JSON.parse(localStorage.getItem('caregivers')) || ['Beth', 'Tara', 'Patricia', 'Stacey'];
@@ -219,25 +240,4 @@ document.addEventListener('DOMContentLoaded', () => {
                 const startDate = new Date(event.startDateTime);
                 const endDate = new Date(event.endDateTime);
                 const formatDate = (date) => date.toISOString().split('T')[0];
-                const formatTime = (date) => date.toTimeString().split(' ')[0];
-                return `${event.subject},${formatDate(startDate)},${formatTime(startDate)},${formatDate(endDate)},${formatTime(endDate)},${sendReminders}`;
-            })
-        ].join('\n');
-
-        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-        const link = document.createElement('a');
-        if (navigator.msSaveBlob) {
-            navigator.msSaveBlob(blob, 'calendar_events.csv');
-        } else {
-            link.href = URL.createObjectURL(blob);
-            link.download = 'calendar_events.csv';
-            link.style.display = 'none';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-
-        // Open Google Calendar export page in a new tab
-        window.open('https://calendar.google.com/calendar/u/0/r/settings/export', '_blank');
-    }
-});
+   
