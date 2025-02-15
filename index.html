@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Caregiver Calendar Creator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Caregiver Calendar Creator</h1>
+        <h1><i class="fas fa-calendar-alt"></i> Caregiver Calendar Creator</h1>
     </header>
     <main>
         <form id="event-form">
             <div class="form-group subject-group">
                 <div class="subject-select">
-                    <label for="subject">Caregiver:</label>
+                    <label for="subject"><i class="fas fa-user-nurse"></i> Caregiver:</label>
                     <select id="subject" required>
                         <option value="">Select a caregiver</option>
                         <option value="Beth">Beth</option>
@@ -24,13 +26,13 @@
                     </select>
                 </div>
                 <div class="subject-buttons">
-                    <button type="button" id="add-subject">Add New Caregiver</button>
-                    <button type="button" id="remove-subject">Remove Caregiver</button>
+                    <button type="button" id="add-subject"><i class="fas fa-plus"></i> Add New Caregiver</button>
+                    <button type="button" id="remove-subject"><i class="fas fa-minus"></i> Remove Caregiver</button>
                 </div>
             </div>
             <div class="form-group date-selectors">
                 <div class="date-select">
-                    <label for="month">Month:</label>
+                    <label for="month"><i class="fas fa-calendar-day"></i> Month:</label>
                     <select id="month" required>
                         <option value="">Select a month</option>
                     </select>
@@ -40,14 +42,14 @@
                     </div>
                 </div>
                 <div class="date-select">
-                    <label for="year">Year:</label>
+                    <label for="year"><i class="fas fa-calendar"></i> Year:</label>
                     <select id="year" required>
                         <option value="">Select a year</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
-                <label for="date">Date:</label>
+                <label for="date"><i class="fas fa-clock"></i> Date:</label>
                 <div id="number-pad">
                     <div class="num-row">
                         <button type="button" class="num-btn">1</button>
@@ -55,7 +57,7 @@
                         <button type="button" class="num-btn">3</button>
                         <button type="button" class="num-btn">4</button>
                         <button type="button" class="num-btn">5</button>
-                        <button type="button" class="num-btn" id="day-btn">Day</button>
+                        <button type="button" class="num-btn" id="day-btn"><i class="fas fa-sun"></i> Day</button>
                     </div>
                     <div class="num-row">
                         <button type="button" class="num-btn">6</button>
@@ -63,27 +65,25 @@
                         <button type="button" class="num-btn">8</button>
                         <button type="button" class="num-btn">9</button>
                         <button type="button" class="num-btn">0</button>
-                        <button type="button" class="num-btn" id="night-btn">Night</button>
+                        <button type="button" class="num-btn" id="night-btn"><i class="fas fa-moon"></i> Night</button>
                     </div>
                 </div>
                 <input type="text" id="date" readonly required>
             </div>
         </form>
         <div id="event-list">
-            <h2>Added Events</h2>
+            <h2><i class="fas fa-list"></i> Events</h2>
             <ul id="events"></ul>
         </div>
         <div class="csv-options">
-            <button type="button" id="create-csv">Create CSV</button>
+            <button type="button" id="create-csv"><i class="fas fa-file-csv"></i> Create CSV</button>
             <div class="reminder-option">
                 <input type="checkbox" id="send-reminders" name="send-reminders">
-                <label for="send-reminders">Send reminders</label>
+                <label for="send-reminders"><i class="fas fa-bell"></i> Send reminders</label>
             </div>
         </div>
     </main>
     <footer>
         <p>&copy; 2025 Caregiver Calendar Creator</p>
     </footer>
-    <script src="script.js"></script>
-</body>
-</html>
+    <sc
